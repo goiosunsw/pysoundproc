@@ -125,9 +125,9 @@ def process_frames():
         obs = mx.T@avs
         obstr = ""
         for oo in obs:
-            obstr += "{0:.2f}, ".format(10*np.log10(oo))
+            obstr += "{0:.3f}, ".format(10*np.log10(oo))
         
-        print("{0:.2f} :: {1}".format(10*np.log10((np.sum(alldat**2)/len(alldat))), obstr ))
+        print("{0:.3f}, {1}".format(10*np.log10((np.sum(alldat**2)/len(alldat))), obstr ))
     return 
 
 
