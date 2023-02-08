@@ -8,6 +8,7 @@ import argparse
 import queue
 import sys
 import traceback
+from datetime import datetime
 
 import numpy as np
 import sounddevice as sd
@@ -109,6 +110,7 @@ def process_frames():
     global mx
     
     alldat = []
+    time = datetime.now()
     while True:
         try:
             data = q.get_nowait()
@@ -127,7 +129,7 @@ def process_frames():
         for oo in obs:
             obstr += "{0:.3f}, ".format(10*np.log10(oo))
         
-        print("{0:.3f}, {1}".format(10*np.log10((np.sum(alldat**2)/len(alldat))), obstr ))
+        print("{2}, {0:.3f}, {1}".format(10*np.log10((np.sum(alldat**2)/len(alldat))), obstr, datetime.timestamp(time) ))
     return 
 
 
