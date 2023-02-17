@@ -70,7 +70,10 @@ def stft(x, wind=np.hanning(1024), nhop=512, nfft=None):
     nfr = (len(x)-nwind)//nhop+1
     s = np.zeros((nwind//2+1, nfr))
     for ii, ist in enumerate(range(0, len(x)-nwind, nhop)):
-        xx = x[ist:ist+nwind]*wind
+        try:
+            xx = x[ist:ist+nwind]*wind
+        except ValueError:
+            xx = wind*np.nan
         xf = np.fft.fft(xx)
         s[:,ii] = np.abs(xf[:nfft//2+1])**2
     return s
