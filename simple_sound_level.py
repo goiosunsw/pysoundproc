@@ -122,7 +122,7 @@ def process_frames():
             break
     alldat = np.array(alldat)
     n = len(alldat)
-    if n > 0: 
+    if n > len(window): 
         nfr = int(np.floor((n-len(window))/(len(window)//2)))
         nhop = n//nfr
         s = stft(alldat, wind=window, nhop=nhop)
